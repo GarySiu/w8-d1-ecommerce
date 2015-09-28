@@ -34,14 +34,14 @@ router.post('/', function(req, res){
   });
 })
 
-// //SHOW
-// router.get('/:id', function(req, res){
-//   console.log('Data being requested for ' + req.params.id + ' from /products')
-//     Product.findById(req.params.id, function(err, product){
-//     if(err) console.log(err)
-//     res.json(product);
-//   })
-// })
+//SHOW
+router.get('/:id', function(req, res){
+  console.log('Data being requested for ' + req.params.id + ' from /users')
+    User.findById(req.params.id, function(err, user){
+    if(err) console.log(err)
+    res.json(user);
+  })
+})
 
 // //UPDATE
 // router.put('/:id', function(req, res){
