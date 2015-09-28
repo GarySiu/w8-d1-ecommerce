@@ -1,8 +1,6 @@
 var express = require('express')
 var router = express.Router()
 var moongoose = require('mongoose')
-moongoose.connect('mongodb://localhost/ecommerce')
-
 var bodyParser = require('body-parser')
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json())
@@ -53,7 +51,7 @@ router.put('/:id', function(req, res){
   if(data.name) alteredProduct.name = data.name
   if(data.price) alteredProduct.price = data.price
   if(data.description) alteredProduct.description = data.description
-  console.log(alteredProduct)
+
   Product.findByIdAndUpdate(req.params.id, alteredProduct, {}, function(err, product){
   if(err) console.log(err)
   res.json(product);
