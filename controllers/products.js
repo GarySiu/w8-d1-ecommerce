@@ -39,11 +39,19 @@ router.post('/', function(req, res){
 //SHOW
 router.get('/:id', function(req, res){
   console.log('Data being requested for ' + req.params.id + ' from /products')
-    Product.find({_id: req.params.id}, function(err, product){
+    Product.findById(req.params.id, function(err, product){
     if(err) console.log(err)
     res.json(product);
   })
 })
 
+//DELETE
+router.delete('/:id', function(req, res){
+  console.log('Delete request for ' + req.params.id + ' from /products')
+    Product.findByIdAndRemove(req.params.id, function(err, product){
+    if(err) console.log(err)
+    res.json(product);
+  })
+})
 
 module.exports = router
