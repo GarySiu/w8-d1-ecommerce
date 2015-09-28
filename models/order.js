@@ -4,7 +4,7 @@ var User = mongoose.model('User')
 
 var orderSchema = new mongoose.Schema({
   price: String,
-  createdAt: Date.now(),
+  createdAt: Date,
   address: {
     street: String,
     postcode: String,
@@ -12,18 +12,9 @@ var orderSchema = new mongoose.Schema({
     country: String
   },
   products: [{type: mongoose.Schema.ObjectId, ref: 'Product'}],
-  user: User.schema
+  user: [User.schema]
 })
 
 var Order = mongoose.model('Order', orderSchema)
 
 module.exports = Order;
-// Price(String)
-// CreatedAt(Date)
-// Adress(Object)
-// Street(String)
-// Postcode(String)
-// Town(String)
-// Country(String)
-// Products(Array of Product references)
-// User(Embedded User)
