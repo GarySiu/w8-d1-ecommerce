@@ -10,7 +10,13 @@ router.use(bodyParser.json())
 var Product = require('../models/product')
 
 //INDEX
-
+router.get('/', function(req, res){
+  console.log('Data being requested from /products')
+    Product.find({}, function(err, products){
+    if(err) console.log(err)
+    res.json(products);
+  })
+})
 
 
 //CREATE
@@ -29,5 +35,15 @@ router.post('/', function(req, res){
     res.json(product);
   });
 })
+
+//SHOW
+router.get('/:id', function(req, res){
+  console.log('Data being requested for ' + req.params.id + ' from /products')
+    Product.find({_id: req.params.id}, function(err, product){
+    if(err) console.log(err)
+    res.json(product);
+  })
+})
+
 
 module.exports = router
