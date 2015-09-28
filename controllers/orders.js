@@ -26,4 +26,13 @@ router.get('/', function(req, res){
 //   res.json(req.body)
 // })
 
+//SHOW
+router.get('/:id', function(req, res){
+  console.log('Data being requested for ' + req.params.id + ' from /orders')
+    Order.findById(req.params.id, function(err, order){
+    if(err) console.log(err)
+    res.json(order);
+  })
+})
+
 module.exports = router
