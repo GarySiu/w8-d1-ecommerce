@@ -43,20 +43,20 @@ router.get('/:id', function(req, res){
   })
 })
 
-// //UPDATE
-// router.put('/:id', function(req, res){
-//   console.log('Update request for ' + req.params.id + ' from /products')
-//   var data = req.body;
-//   var alteredProduct = {}
-//   if(data.name) alteredProduct.name = data.name
-//   if(data.price) alteredProduct.price = data.price
-//   if(data.description) alteredProduct.description = data.description
+//UPDATE
+router.put('/:id', function(req, res){
+  console.log('Update request for ' + req.params.id + ' from /users')
+  var data = req.body;
+  var alteredUser = {}
+  if(data.name) alteredUser.name = data.name
+  if(data.gender) alteredUser.gender = data.gender
+  if(data.dob) alteredUser.dob = data.dob
 
-//   Product.findByIdAndUpdate(req.params.id, alteredProduct, {}, function(err, product){
-//   if(err) console.log(err)
-//   res.json(product);
-//   })
-// })
+  User.findByIdAndUpdate(req.params.id, alteredUser, {}, function(err, user){
+  if(err) console.log(err)
+  res.json(user);
+  })
+})
 
 //DELETE
 router.delete('/:id', function(req, res){
