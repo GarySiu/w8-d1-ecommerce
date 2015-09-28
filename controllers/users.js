@@ -11,29 +11,28 @@ var User = require('../models/user')
 //INDEX
 router.get('/', function(req, res){
   console.log('Data being requested from /users')
-    Product.find({}, function(err, users){
+    User.find({}, function(err, users){
     if(err) console.log(err)
     res.json(users);
   })
 })
 
-
 //CREATE
-// router.post('/', function(req, res){
-//   console.log('Data being posted to /products')
-//   var data = req.body;
-//   var newProduct = new Product({
-//     name: data.name,
-//     price: data.price,
-//     description: data.description
-//   })
+router.post('/', function(req, res){
+  console.log('Data being posted to /users')
+  var data = req.body;
+  var newUser = new User({
+    name: data.name,
+    gender: data.gender,
+    dob: data.dob
+  })
 
-//   newProduct.save(function (err, product) {
-//     if(err) console.log(err);
-//     console.log('Product has been created!');
-//     res.json(product);
-//   });
-// })
+  newUser.save(function (err, user) {
+    if(err) console.log(err);
+    console.log('User has been created!');
+    res.json(user);
+  });
+})
 
 // //SHOW
 // router.get('/:id', function(req, res){
