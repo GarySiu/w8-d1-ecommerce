@@ -2,7 +2,6 @@ var express = require('express')
 var router = express.Router()
 var moongoose = require('mongoose')
 var bodyParser = require('body-parser')
-router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json())
 
 var Product = require('../models/product')
@@ -47,12 +46,12 @@ router.get('/:id', function(req, res){
 router.put('/:id', function(req, res){
   console.log('Update request for ' + req.params.id + ' from /products')
   var data = req.body;
-  var alteredProduct = {}
-  if(data.name) alteredProduct.name = data.name
-  if(data.price) alteredProduct.price = data.price
-  if(data.description) alteredProduct.description = data.description
-
-  Product.findByIdAndUpdate(req.params.id, alteredProduct, {}, function(err, product){
+  var changes = {}
+  //only add attributes that exist in the request to the changes object
+  if(data.name) changes.name = data.name
+  if(data.price) changes.price = data.price
+  if(data.description) changes.description = data.description
+  Product.findByIdAndUpdate(req.params.id, changes, {}, function(err, product){
   if(err) console.log(err)
   res.json(product);
   })
