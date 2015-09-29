@@ -19,12 +19,18 @@ router.get('/', function(req, res){
 })
 
 //CREATE
-// router.post('/', function(req, res){
-//   console.log('Data being posted to /orders')
-//   Product.find({_id: })
-
-//   res.json(req.body)
-// })
+router.post('/', function(req, res){
+  console.log('Data being posted to /orders')
+  var totalPrice = 0;
+  for(i = 0; i < req.body.products.length; i++){
+    Product.findById(req.body.products[i], function(err, product){
+    if(err) console.log(err)
+    totalPrice += product.price
+    console.log(i + ' ' + totalPrice)
+    // console.log(totalPrice)
+    })
+  }
+})
 
 //SHOW
 router.get('/:id', function(req, res){
